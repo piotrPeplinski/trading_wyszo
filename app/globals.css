@@ -1,0 +1,298 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0a0c12;
+  --color-bg-soft: #0f121b;
+  --color-surface: #131722;
+  --color-surface-2: #191e2b;
+  --color-border: #232a3b;
+  --color-ink: #f4f6fb;
+  --color-muted: #92a0b8;
+  --color-muted-2: #5c6780;
+  --color-green: #baff62;
+  --color-green-ink: #baff62;
+  --color-green-soft: #1c2a12;
+  --color-gold: #d4af5a;
+  --color-gold-ink: #d4af5a;
+  --color-red: #ef4b4b;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-space);
+
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-marquee-reverse: marqueeReverse 42s linear infinite;
+  --animate-shimmer: shimmer 3.2s linear infinite;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: #f6f7fb;
+  --color-bg-soft: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef0f6;
+  --color-border: #e1e4ec;
+  --color-ink: #0a0c12;
+  --color-muted: #5b6478;
+  --color-muted-2: #667085;
+  --color-green-ink: #477e00;
+  --color-green-soft: #eaffd1;
+  --color-gold-ink: #8b6b24;
+  --color-red: #df1414;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--color-green);
+  color: #06110b;
+}
+
+/* ---------- Ambient green glow (page-wide, fixed) ---------- */
+.ambient-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -21;
+  pointer-events: none;
+  background:
+    radial-gradient(620px circle at 12% 15%, rgba(186, 255, 98, 0.06), transparent 60%),
+    radial-gradient(720px circle at 88% 55%, rgba(186, 255, 98, 0.045), transparent 65%),
+    radial-gradient(560px circle at 45% 95%, rgba(186, 255, 98, 0.05), transparent 60%),
+    radial-gradient(480px circle at 70% 10%, rgba(212, 175, 90, 0.03), transparent 60%);
+}
+
+/* ---------- Aurora backdrop ---------- */
+@keyframes aurora {
+  0%,
+  100% {
+    transform: translate3d(-6%, -4%, 0) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translate3d(6%, 4%, 0) scale(1.15);
+    opacity: 0.85;
+  }
+}
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  animation: aurora 18s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* ---------- Floating particles ---------- */
+@keyframes floatSpark {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.25;
+  }
+  50% {
+    transform: translateY(-22px) translateX(8px);
+    opacity: 0.9;
+  }
+}
+
+.particle {
+  position: absolute;
+  border-radius: 9999px;
+  background: var(--color-green);
+  animation: floatSpark 8s ease-in-out infinite;
+}
+
+/* ---------- Marquee ---------- */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marqueeReverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.marquee-track {
+  animation: var(--animate-marquee);
+}
+
+.marquee-track-reverse {
+  animation: var(--animate-marquee-reverse);
+}
+
+.marquee-pause:hover .marquee-track,
+.marquee-pause:hover .marquee-track-reverse {
+  animation-play-state: paused;
+}
+
+/* ---------- Shimmer text ---------- */
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+.text-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-ink) 30%,
+    var(--color-green) 45%,
+    var(--color-gold) 55%,
+    var(--color-ink) 70%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: var(--animate-shimmer);
+}
+
+/* ---------- Icon color shimmer (flows alongside .text-shimmer) ---------- */
+@keyframes iconShimmer {
+  0%,
+  100% {
+    color: var(--color-green);
+  }
+  50% {
+    color: var(--color-gold);
+  }
+}
+
+.icon-shimmer {
+  animation: iconShimmer 3.2s ease-in-out infinite;
+}
+
+/* ---------- Live pulse dot ---------- */
+@keyframes livePulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(186, 255, 98, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(186, 255, 98, 0);
+  }
+}
+
+.live-pulse {
+  animation: livePulse 2s ease-in-out infinite;
+}
+
+/* ---------- Glow pulse (pricing highlight) ---------- */
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 24px 0 rgba(186, 255, 98, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 48px 6px rgba(186, 255, 98, 0.4);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 3.5s ease-in-out infinite;
+}
+
+/* ---------- Button shine sweep ---------- */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.35) 40%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+}
+
+.btn-shine:hover::after {
+  transform: translateX(120%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-blob,
+  .particle,
+  .live-pulse,
+  .glow-pulse {
+    animation: none !important;
+  }
+  .text-shimmer {
+    animation: none;
+    background-position: 0 center;
+  }
+  .icon-shimmer {
+    animation: none;
+  }
+  .marquee-track,
+  .marquee-track-reverse {
+    animation-duration: 90s;
+  }
+}
+
+/* ---------- Radix accordion height animation ---------- */
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+/* subtle scrollbar matching dark theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-2);
+  border-radius: 9999px;
+}
