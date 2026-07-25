@@ -24,7 +24,7 @@ export function Hero() {
   useEffect(() => {
     // client-only random value — computed after mount to avoid SSR hydration mismatch
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setViewers(Math.floor(Math.random() * 30) + 24);
+    setViewers(Math.floor(Math.random() * 26) + 5);
   }, []);
 
   return (
