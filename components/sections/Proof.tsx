@@ -8,7 +8,38 @@ import { proof, proofDisclaimer } from "@/content/site-content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionAurora } from "@/components/ui/SectionAurora";
 import { Button } from "@/components/ui/Button";
+import { Marquee } from "@/components/ui/Marquee";
 import { scrollToId } from "@/lib/utils";
+
+const proofRows = (() => {
+  const withIndex = proof.images.map((src, index) => ({ src, index }));
+  const mid = Math.ceil(withIndex.length / 2);
+  return [withIndex.slice(0, mid), withIndex.slice(mid)];
+})();
+
+function ProofCertCard({ src, onClick }: { src: string; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="group relative block w-48 shrink-0 overflow-hidden rounded-2xl border border-border bg-surface text-left transition-transform duration-300 hover:-translate-y-1 hover:border-green/50 sm:w-60"
+    >
+      <Image
+        src={`/certs/${src}`}
+        alt="Certyfikat i wypłata członka społeczności JWFOREX"
+        width={480}
+        height={600}
+        className="aspect-[4/5] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+      />
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/50 group-hover:opacity-100">
+        <span className="flex items-center gap-2 rounded-full border border-border bg-surface/90 px-4 py-2 text-xs font-semibold text-ink">
+          <Expand size={14} className="text-green-ink" />
+          Zobacz
+        </span>
+      </div>
+    </button>
+  );
+}
 
 function ProofLightbox({
   index,
@@ -118,37 +149,23 @@ export function Proof() {
         </Button>
       </div>
 
-      <div className="relative mt-8 px-4 sm:mt-14 sm:px-6">
-        <div className="mx-auto max-w-6xl columns-2 gap-4 sm:columns-3 lg:columns-4 [&>*]:mb-4">
-          {proof.images.map((src, i) => (
-            <motion.button
-              key={src}
-              type="button"
-              onClick={() => setActiveIndex(i)}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.5, delay: (i % 4) * 0.08, ease: "easeOut" }}
-              className="group relative block w-full break-inside-avoid overflow-hidden rounded-2xl border border-border bg-surface text-left transition-transform duration-300 hover:-translate-y-1 hover:border-green/50"
-            >
-              <Image
-                src={`/certs/${src}`}
-                alt="Certyfikat i wypłata członka społeczności JWFOREX"
-                width={800}
-                height={800}
-                className="h-auto w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all duration-300 group-hover:bg-black/50 group-hover:opacity-100">
-                <span className="flex items-center gap-2 rounded-full border border-border bg-surface/90 px-4 py-2 text-xs font-semibold text-ink">
-                  <Expand size={14} className="text-green-ink" />
-                  Zobacz
-                </span>
-              </div>
-            </motion.button>
-          ))}
-        </div>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-bg to-transparent" />
-      </div>
+      <motion.div
+        className="relative mt-8 space-y-4 sm:mt-14"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        {proofRows.map((row, rowIndex) => (
+          <Marquee key={rowIndex} reverse={rowIndex === 1}>
+            {row.map(({ src, index }) => (
+              <ProofCertCard key={src} src={src} onClick={() => setActiveIndex(index)} />
+            ))}
+          </Marquee>
+        ))}
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-bg to-transparent sm:w-32" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-bg to-transparent sm:w-32" />
+      </motion.div>
 
       <p className="mx-auto mt-8 max-w-2xl px-4 text-center text-xs leading-relaxed text-muted-2 sm:px-6">
         {proofDisclaimer}

@@ -10,7 +10,7 @@ export const site = {
     { label: "FAQ", href: "#faq" },
   ],
   contact: {
-    instagram: "@jw.forex",
+    instagram: "jw.forex",
     instagramUrl: "https://instagram.com/jw.forex",
     email: "jwforex11@gmail.com",
   },
