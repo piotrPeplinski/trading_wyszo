@@ -256,11 +256,6 @@ export const faqs = [
       "Tak. Program prowadzi od podstaw struktury rynku aż po zaawansowane, przetestowane systemy — nie musisz mieć wcześniejszego doświadczenia.",
   },
   {
-    question: "Ile czasu dziennie muszę poświęcać?",
-    answer:
-      "Zależy od wybranego stylu. Wariant dzienny wymaga skupienia w oknach sesyjnych, wariant swingowy pozwala analizować rynek raz na kilka dni obok pracy na etacie.",
-  },
-  {
     question: "Czym różni się to od kanałów z sygnałami?",
     answer:
       "Nie sprzedajemy sygnałów do kopiowania. Uczymy samodzielnej analizy, dzięki czemu podejmujesz własne decyzje i rozumiesz dlaczego dana transakcja ma sens.",
@@ -278,7 +273,7 @@ export const faqs = [
   {
     question: "Czy mogę zapłacić w ratach?",
     answer:
-      "Tak — możliwa jest płatność w ratach 0%, bez dodatkowych kosztów. Szczegóły ustalamy indywidualnie po zgłoszeniu.",
+      "Tak — możliwa jest płatność w ratach 0%, bez dodatkowych kosztów.",
   },
   {
     question: "Ile czasu zajmie mi codzienny trading?",
