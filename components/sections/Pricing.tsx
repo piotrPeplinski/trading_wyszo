@@ -5,7 +5,6 @@ import { Check, X } from "lucide-react";
 import {
   pricingPlans,
   planBenefits,
-  pricingNote,
   installmentsNote,
 } from "@/content/site-content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -97,8 +96,6 @@ export function Pricing() {
           <PricingCard key={plan.name} plan={plan} index={i} />
         ))}
       </div>
-
-      <p className="mx-auto mt-8 max-w-xl px-4 text-center text-sm text-muted">{pricingNote}</p>
     </section>
   );
 }

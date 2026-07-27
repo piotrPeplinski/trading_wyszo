@@ -21,7 +21,7 @@ export function MemberArea() {
         <SectionHeading
           eyebrow="W środku"
           title="Wszystko w jednym miejscu."
-          description="Nie tylko kurs — codzienna obecność, community i narzędzia do pracy nad własnym warsztatem."
+          description="Nie tylko kurs — codzienne analizy, spójne community i możliwość codziennej pracy ze mną."
         />
 
         <div className="mt-8 grid gap-5 sm:mt-14 sm:grid-cols-2">

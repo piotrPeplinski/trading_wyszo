@@ -16,11 +16,11 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <TrustBar />
+        <Proof />
         <Features />
         <Course />
+        <TrustBar />
         <MemberArea />
-        <Proof />
         <Testimonials />
         <Pricing />
         <FAQ />

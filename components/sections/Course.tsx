@@ -1,7 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { PlayCircle, NotebookPen, BookOpen, type LucideIcon } from "lucide-react";
+import {
+  PlayCircle,
+  NotebookPen,
+  BookOpen,
+  type LucideIcon,
+} from "lucide-react";
 import { courseModules } from "@/content/site-content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionAurora } from "@/components/ui/SectionAurora";
@@ -19,8 +24,8 @@ export function Course() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
           eyebrow="Kurs 4.0"
-          title="Kompletny program, nie luźny zbiór filmów."
-          description="Od podstaw struktury rynku po przetestowane systemy SMC — wszystko poukładane w jedną ścieżkę."
+          title="Kompletny program nauki, a nie po prostu kolejna dawka nic nie wnoszącej wiedzy technicznej."
+          description="Od podstaw struktury rynku po przetestowane systemy SMC — wszystko poukładane w jedną ścieżkę nauki."
         />
 
         <div className="mt-8 grid gap-5 sm:mt-14 sm:grid-cols-3">

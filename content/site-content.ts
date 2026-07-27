@@ -21,13 +21,19 @@ export const hero = {
   headline: ["Przestań zgadywać.", "Zacznij handlować", "systemowo."],
   shimmerWord: "systemowo.",
   subheadline:
-    "Uczymy samodzielnej analizy rynku w oparciu o Smart Money Concepts — bez sprzedawania sygnałów. Blisko 4 lata mentoringu, ~500 przeszkolonych osób, jedna społeczność.",
+    "Naucz się mojej strategii, zadawaj mi pytania bez ograniczeń, otrzymuj każdą moją pozycję długo przed aktywacją i bądź częścią spójnej, aktywnej społeczności.",
   ctaPrimary: "Dołącz do JWFOREX",
   ctaSecondary: "Zobacz jak to działa",
   stats: [
-    { value: 4, suffix: "", prefix: "", label: "lata doświadczenia", decimals: 0 },
+    {
+      value: 2022,
+      suffix: "",
+      prefix: "",
+      label: "rok założenia grupy",
+      decimals: 0,
+    },
     { value: 500, suffix: "+", label: "przeszkolonych traderów" },
-    { value: 360, suffix: "+", label: "aktywnych w społeczności" },
+    { value: 390, suffix: "+", label: "członków grupy" },
     { value: 20, suffix: " min", label: "śr. czas odpowiedzi mentora" },
   ],
 };
@@ -45,16 +51,9 @@ export const trustPoints = [
 
 export const comparisonRows = [
   {
-    without: "Kupujesz gotowe sygnały i nie rozumiesz dlaczego wchodzisz w pozycję",
-    with: "Uczysz się samodzielnej analizy rynku opartej na Smart Money Concepts",
-  },
-  {
-    without: "Uczysz się od kogoś bez realnego, sprawdzalnego stażu",
-    with: "Blisko 4 lata doświadczenia, ~500 przeszkolonych osób",
-  },
-  {
-    without: "Ukryte opłaty i dopłaty przy każdej zmianie planu",
-    with: "Transparentny cennik — przy upgrade dopłacasz tylko różnicę",
+    without:
+      "Kupujesz gotowe sygnały i nie rozumiesz dlaczego wchodzisz w pozycję",
+    with: "Poznajesz moją strategię, pełny plan tradingowy i umiesz samodzielnie wykonać analizę od A do Z",
   },
   {
     without: "Na pytanie czekasz dniami, jeśli w ogóle dostaniesz odpowiedź",
@@ -62,7 +61,15 @@ export const comparisonRows = [
   },
   {
     without: "Rozrzucone materiały bez spójnej ścieżki nauki",
-    with: "Kurs 4.0 — kompletny program krok po kroku, od podstaw po SMC",
+    with: "KURS 4.0 - uczysz się krok po kroku pełnego systemu działania",
+  },
+  {
+    without: "Ukryte opłaty, płatne wartości premium i ciągłe zmiany cen",
+    with: "Transparentny cennik — przy przedłużeniu dopłacasz tylko różnicę",
+  },
+  {
+    without: "Dołączasz do nowej grupy bez doświadczenia mentora",
+    with: "Grupa jest prowadzona od 2022 roku, od kiedy przeszkoliłem ponad 500 osób",
   },
 ];
 
@@ -71,7 +78,7 @@ export const courseModules = [
     icon: "PlayCircle",
     title: "Lekcje wideo",
     description:
-      "Pełna ścieżka nauki od podstaw struktury rynku po zaawansowane koncepcje SMC, w Twoim tempie.",
+      "Pełna ścieżka nauki od podstaw struktury rynku po zaawansowane koncepty SMC, krok po kroku, w ogromnych detalach.",
   },
   {
     icon: "NotebookPen",
@@ -83,7 +90,7 @@ export const courseModules = [
     icon: "BookOpen",
     title: "E-book",
     description:
-      "Materiał uzupełniający kurs w formie pisemnej — do wracania i powtórek bez przekopywania się przez nagrania.",
+      "Blisko 100 stron czystej wiedzy. Podsumowanie kursu, łatwy powrót do każdego segmentu wiedzy i strategii.",
   },
 ];
 
@@ -92,19 +99,19 @@ export const memberAreas = [
     icon: "LineChart",
     title: "Moja Sekcja",
     description:
-      "Codzienne analizy rynku i case studies realnych pozycji — widzisz dokładnie jak wygląda proces decyzyjny w praktyce.",
+      "Codzienne analizy rynku, wszystkie pozycje wysyłane przed aktywacją, wideo omówienia każdego take profitu— widzisz dokładnie jak wygląda proces decyzyjny i zachowanie strategii w praktyce.",
   },
   {
     icon: "Users",
     title: "Sekcja Członka",
     description:
-      "Czaty dedykowane konkretnym systemom, obszar profit-sharing społeczności oraz sesje Q&A z mentorem.",
+      "Wstawiaj własne analizy, zadawaj nielimitowane pytania, dyskutuj z innymi członkami grupy, pochwal się take profitem i zanotuj popełniony błąd!",
   },
   {
     icon: "Repeat",
     title: "Dwa warianty stylu",
     description:
-      "Aktywny day trading albo pasywny swing trading — dopasuj podejście do ilości czasu, jaki realnie masz.",
+      "Aktywny day trading albo pasywny swing trading — dwa podejścia dla różnych stylów życia.",
   },
   {
     icon: "Globe2",
@@ -130,7 +137,7 @@ export const pricingPlans = [
     name: "Miesiąc",
     price: 499,
     period: "/ mies.",
-    description: "Elastyczny start, płatność co miesiąc.",
+    description: "Przetestuj grupę nie tracąc początkowej wpłaty.",
     highlight: false,
     includedCount: 5,
     cta: "Dołącz teraz",
@@ -140,7 +147,8 @@ export const pricingPlans = [
     name: "3 Miesiące",
     price: 999,
     period: "/ 3 mies.",
-    description: "Najczęściej wybierany wariant.",
+    description:
+      "Najczęściej wybierany wariant - przedłuż na stale w dowolnym momencie.",
     highlight: true,
     badge: "Popularne",
     includedCount: 6,
@@ -164,13 +172,13 @@ export const pricingNote =
   "Ważne! Dołączając na miesiąc lub 3 miesiące nie musisz martwić się o wyrzucenie pieniędzy w błoto. Przedłużenie dostępu na stałe będzie Cię kosztować jedynie różnicę cen względem planu, który wybierzesz, a nie całą kwotę dostępu.";
 
 export const installmentsNote =
-  "Płatność jednorazowa lub w ratach 0% — szczegóły płatności ustalamy indywidualnie po zgłoszeniu.";
+  "Ważne! Dołączając na miesiąc lub 3 miesiące nie musisz martwić się o wyrzucenie pieniędzy w błoto. Przedłużenie dostępu na stałe będzie Cię kosztować jedynie różnicę cen względem planu, który wybierzesz, a nie całą kwotę dostępu.";
 
 export const proof = {
   eyebrow: "Dowody",
-  title: "Ponad 500 traderów, którzy zdali wyzwanie.",
+  title: "Dziesiątki traderów fundowanych.",
   description:
-    "Nasi kursanci zdają wyzwania prop firmów i odbierają realne wypłaty — to nie przypadkowe wygrane, tylko efekt konsekwentnego trzymania się systemu, którego uczymy.",
+    "Nasi kursanci regularnie zdają wyzwania fundowane i odbierają realne wypłaty — to nie przypadkowe wygrane, tylko efekt konsekwentnego trzymania się systemu, którego uczymy.",
   cta: "Dołącz do JWFOREX",
   images: [
     "1.png",
@@ -271,6 +279,11 @@ export const faqs = [
     question: "Czy mogę zapłacić w ratach?",
     answer:
       "Tak — możliwa jest płatność w ratach 0%, bez dodatkowych kosztów. Szczegóły ustalamy indywidualnie po zgłoszeniu.",
+  },
+  {
+    question: "Ile czasu zajmie mi codzienny trading?",
+    answer:
+      "Wszystko zależy od wybranej ścieżki. Pasywny Swing Trading realnie zajmuje 10-15 minut pracy na wykresie dziennie. Jest to ekstremalnie efektywny czasowo system. Aktywny Day Trading to realnie około 1.5h pracy na wykresie dziennie.",
   },
 ];
 
