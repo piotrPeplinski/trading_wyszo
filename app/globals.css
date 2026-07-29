@@ -21,8 +21,6 @@
   --font-sans: var(--font-inter);
   --font-display: var(--font-space);
 
-  --animate-marquee: marquee 38s linear infinite;
-  --animate-marquee-reverse: marqueeReverse 42s linear infinite;
   --animate-shimmer: shimmer 3.2s linear infinite;
 }
 
@@ -117,38 +115,6 @@ body {
   border-radius: 9999px;
   background: var(--color-green);
   animation: floatSpark 8s ease-in-out infinite;
-}
-
-/* ---------- Marquee ---------- */
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-@keyframes marqueeReverse {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
-}
-
-.marquee-track {
-  animation: var(--animate-marquee);
-}
-
-.marquee-track-reverse {
-  animation: var(--animate-marquee-reverse);
-}
-
-.marquee-pause:hover .marquee-track,
-.marquee-pause:hover .marquee-track-reverse {
-  animation-play-state: paused;
 }
 
 /* ---------- Shimmer text ---------- */
@@ -259,10 +225,6 @@ body {
   }
   .icon-shimmer {
     animation: none;
-  }
-  .marquee-track,
-  .marquee-track-reverse {
-    animation-duration: 90s;
   }
 }
 

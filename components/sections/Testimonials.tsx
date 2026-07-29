@@ -16,15 +16,15 @@ function TestimonialCard({
           <Star key={i} size={14} fill="currentColor" strokeWidth={0} />
         ))}
       </div>
-      <p className="mt-4 text-sm leading-relaxed text-ink/90">
+      <p className="mt-4 text-xs leading-relaxed text-ink/90 sm:text-sm">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
       <div className="mt-5 flex items-center gap-3">
-        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green/15 text-sm font-semibold text-green-ink">
+        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-green/15 text-xs font-semibold text-green-ink sm:text-sm">
           {testimonial.initials}
         </span>
         <div>
-          <p className="text-xs text-muted">{testimonial.role}</p>
+          <p className="text-[11px] text-muted sm:text-xs">{testimonial.role}</p>
         </div>
       </div>
     </div>
