@@ -2,7 +2,7 @@ import { Star } from "lucide-react";
 import { testimonials, testimonialsDisclaimer } from "@/content/site-content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionAurora } from "@/components/ui/SectionAurora";
-import { Marquee } from "@/components/ui/Marquee";
+import { ScrollableMarquee } from "@/components/ui/ScrollableMarquee";
 
 function TestimonialCard({
   testimonial,
@@ -44,11 +44,11 @@ export function Testimonials() {
       </div>
 
       <div className="mt-8 sm:mt-14">
-        <Marquee>
+        <ScrollableMarquee>
           {testimonials.map((t) => (
             <TestimonialCard key={t.initials + t.role} testimonial={t} />
           ))}
-        </Marquee>
+        </ScrollableMarquee>
       </div>
     </section>
   );
