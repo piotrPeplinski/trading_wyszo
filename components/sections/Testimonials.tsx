@@ -33,7 +33,7 @@ function TestimonialCard({
 
 export function Testimonials() {
   return (
-    <section className="relative overflow-hidden py-14 sm:py-24">
+    <section className="relative overflow-hidden py-[2.1875rem] sm:py-24">
       <SectionAurora variant="right" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading

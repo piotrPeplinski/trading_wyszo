@@ -136,7 +136,7 @@ export function Proof() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative overflow-hidden py-14 sm:py-24">
+    <section className="relative overflow-hidden py-[2.1875rem] sm:py-24">
       <SectionAurora variant="left" />
       <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
         <SectionHeading

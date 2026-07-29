@@ -15,7 +15,7 @@ const icons: Record<string, LucideIcon> = {
 
 export function MemberArea() {
   return (
-    <section id="srodek" className="relative overflow-hidden py-14 sm:py-24">
+    <section id="srodek" className="relative overflow-hidden py-[2.1875rem] sm:py-24">
       <SectionAurora variant="left" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading

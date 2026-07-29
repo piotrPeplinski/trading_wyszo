@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 
 export function Features() {
   return (
-    <section className="relative overflow-hidden py-14 sm:py-24">
+    <section className="relative overflow-hidden py-[2.1875rem] sm:py-24">
       <SectionAurora variant="right" />
       <div className="mx-auto max-w-5xl px-4 sm:px-6">
         <SectionHeading
@@ -26,13 +26,13 @@ export function Features() {
           className="mt-8 overflow-hidden rounded-2xl border border-border bg-surface sm:mt-14"
         >
           <div className="grid grid-cols-2">
-            <div className="flex items-center gap-2 border-b border-r border-border bg-red/10 px-2.5 py-2 sm:px-5 sm:py-4">
+            <div className="flex items-center gap-1 border-b border-r border-border bg-red/10 px-2.5 py-2 sm:gap-2 sm:px-5 sm:py-4">
               <X size={18} className="text-red" />
               <span className="text-sm font-semibold text-red sm:text-base">
                 Bez JWFOREX
               </span>
             </div>
-            <div className="flex items-center gap-2 border-b border-border bg-green/10 px-2.5 py-2 sm:px-5 sm:py-4">
+            <div className="flex items-center gap-1 border-b border-border bg-green/10 px-2.5 py-2 sm:gap-2 sm:px-5 sm:py-4">
               <Check size={18} className="text-green-ink" />
               <span className="text-sm font-semibold text-green-ink sm:text-base">
                 Z JWFOREX
@@ -50,15 +50,15 @@ export function Features() {
                 transition={{ duration: 0.4, delay: i * 0.08 }}
                 className={cn("grid grid-cols-2", i % 2 === 1 && "bg-bg-soft/40")}
               >
-                <div className="flex items-start gap-3 border-r border-border px-2.5 py-2.5 sm:px-5 sm:py-5">
+                <div className="flex items-start gap-1.5 border-r border-border px-2.5 py-2.5 sm:gap-3 sm:px-5 sm:py-5">
                   <X size={16} className="mt-0.5 shrink-0 text-red/70" />
-                  <span className="text-sm leading-relaxed text-muted line-through decoration-red/30 sm:text-base">
+                  <span className="text-justify text-sm leading-relaxed text-muted  sm:text-base">
                     {row.without}
                   </span>
                 </div>
-                <div className="flex items-start gap-3 px-2.5 py-2.5 sm:px-5 sm:py-5">
+                <div className="flex items-start gap-1.5 px-2.5 py-2.5 sm:gap-3 sm:px-5 sm:py-5">
                   <Check size={16} className="mt-0.5 shrink-0 text-green-ink" />
-                  <span className="text-sm leading-relaxed text-ink/90 sm:text-base">
+                  <span className="text-justify text-sm leading-relaxed text-ink/90 sm:text-base">
                     {row.with}
                   </span>
                 </div>

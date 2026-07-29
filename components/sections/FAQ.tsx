@@ -8,7 +8,7 @@ import { SectionAurora } from "@/components/ui/SectionAurora";
 
 export function FAQ() {
   return (
-    <section id="faq" className="relative overflow-hidden py-14 sm:py-24">
+    <section id="faq" className="relative overflow-hidden py-[2.1875rem] sm:py-24">
       <SectionAurora variant="left" />
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
         <SectionHeading

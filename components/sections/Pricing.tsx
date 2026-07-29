@@ -81,7 +81,7 @@ function PricingCard({ plan, index }: { plan: Plan; index: number }) {
 
 export function Pricing() {
   return (
-    <section id="cennik" className="relative overflow-hidden py-14 sm:py-24">
+    <section id="cennik" className="relative overflow-hidden py-[2.1875rem] sm:py-24">
       <SectionAurora variant="right" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <SectionHeading
