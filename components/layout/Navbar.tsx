@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { BookOpen, Menu, X } from "lucide-react";
 import { site } from "@/content/site-content";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -47,15 +48,26 @@ export function Navbar() {
         </a>
 
         <nav className="hidden items-center gap-7 md:flex">
-          {site.nav.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-medium text-[#92a0b8] transition-colors hover:text-[#f4f6fb]"
-            >
-              {item.label}
-            </a>
-          ))}
+          {site.nav.map((item) =>
+            item.href.startsWith("/") ? (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center gap-1.5 text-sm font-medium text-green transition-colors hover:text-[#f4f6fb]"
+              >
+                <BookOpen size={15} />
+                {item.label}
+              </Link>
+            ) : (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm font-medium text-[#92a0b8] transition-colors hover:text-[#f4f6fb]"
+              >
+                {item.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
@@ -87,16 +99,28 @@ export function Navbar() {
             className="mx-4 mt-2 overflow-hidden rounded-2xl border border-[#232a3b] bg-[#0f121b]/95 backdrop-blur-md md:hidden"
           >
             <div className="flex flex-col gap-1 p-4">
-              {site.nav.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#92a0b8] transition-colors hover:bg-[#191e2b] hover:text-[#f4f6fb]"
-                >
-                  {item.label}
-                </a>
-              ))}
+              {site.nav.map((item) =>
+                item.href.startsWith("/") ? (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center gap-1.5 rounded-lg px-3 py-2.5 text-sm font-medium text-green transition-colors hover:bg-[#191e2b] hover:text-[#f4f6fb]"
+                  >
+                    <BookOpen size={15} />
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-lg px-3 py-2.5 text-sm font-medium text-[#92a0b8] transition-colors hover:bg-[#191e2b] hover:text-[#f4f6fb]"
+                  >
+                    {item.label}
+                  </a>
+                )
+              )}
               <Button
                 className="mt-2 w-full"
                 onClick={() => {

@@ -8,6 +8,7 @@ export const site = {
     { label: "Środek", href: "#srodek" },
     { label: "Cennik", href: "#cennik" },
     { label: "FAQ", href: "#faq" },
+    { label: "Dziennik Tradera", href: "/journal" },
   ],
   contact: {
     instagram: "jw.forex",
