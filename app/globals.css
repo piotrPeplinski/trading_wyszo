@@ -296,3 +296,11 @@ body {
   background: var(--color-surface-2);
   border-radius: 9999px;
 }
+
+/* ---------- Utilities ---------- */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}

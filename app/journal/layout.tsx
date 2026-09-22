@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 import { AuthProvider, useAuth } from "@/components/journal/AuthProvider";
+import { JournalNav } from "@/components/journal/JournalNav";
 
 function SessionGate({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth();
@@ -23,7 +24,15 @@ function SessionGate({ children }: { children: React.ReactNode }) {
     );
   }
 
-  return <>{children}</>;
+  // No Footer: this is the app, not a marketing page.
+  return (
+    <>
+      <JournalNav />
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6">
+        {children}
+      </main>
+    </>
+  );
 }
 
 export default function JournalLayout({
