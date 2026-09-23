@@ -7,6 +7,7 @@ import { Plus } from "lucide-react";
 
 import { site } from "@/content/site-content";
 import { useAuth } from "@/components/journal/AuthProvider";
+import { useTradeDialog } from "@/components/journal/TradeDialog";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import {
@@ -29,6 +30,7 @@ const LINKS = [
 export function JournalNav() {
   const pathname = usePathname();
   const { user, logout } = useAuth();
+  const { openCreate } = useTradeDialog();
 
   // Exact match for /journal, prefix match for the rest — otherwise Pulpit,
   // being a prefix of every other route, would stay lit everywhere.
@@ -36,8 +38,15 @@ export function JournalNav() {
     exact ? pathname === href : pathname.startsWith(href);
 
   return (
-    <header className="sticky top-4 z-50 px-4 sm:px-6">
-      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-2xl border border-border bg-bg-soft/80 px-4 py-2.5 backdrop-blur-md sm:px-6">
+    <>
+      <div
+        aria-hidden="true"
+        className="fixed inset-x-0 top-0 z-40 h-[88px] overflow-hidden bg-bg"
+      >
+        <span className="ambient-glow-fill" />
+      </div>
+      <header className="sticky top-4 z-50 px-4 sm:px-6">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-2xl border border-[#232a3b] bg-[#0f121b]/80 px-4 py-2.5 backdrop-blur-md sm:px-6">
         <Link href="/" className="flex shrink-0 items-center">
           <Image
             src="/jw-logo-mark.png"
@@ -60,8 +69,8 @@ export function JournalNav() {
                 className={cn(
                   "shrink-0 border-b-2 pb-0.5 text-sm font-medium transition-colors",
                   active
-                    ? "border-green text-ink"
-                    : "border-transparent text-muted hover:text-ink"
+                    ? "border-green text-[#f4f6fb]"
+                    : "border-transparent text-[#92a0b8] hover:text-[#f4f6fb]"
                 )}
               >
                 {link.label}
@@ -71,12 +80,12 @@ export function JournalNav() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
-          <Button size="md" onClick={() => {}} aria-label="Dodaj pozycję">
+          <Button size="md" onClick={() => openCreate()} aria-label="Dodaj pozycję">
             <Plus size={17} />
             <span className="hidden md:inline">Dodaj pozycję</span>
           </Button>
 
-          <ThemeToggle />
+          <ThemeToggle className="border-[#232a3b] text-[#92a0b8] hover:text-[#f4f6fb]" />
 
           <DropdownMenu>
             <DropdownMenuTrigger
@@ -93,7 +102,7 @@ export function JournalNav() {
                   className="h-9 w-9 rounded-full"
                 />
               ) : (
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-surface-2 text-sm font-semibold text-ink">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#191e2b] text-sm font-semibold text-[#f4f6fb]">
                   {user?.username?.[0]?.toUpperCase()}
                 </span>
               )}
@@ -107,6 +116,7 @@ export function JournalNav() {
           </DropdownMenu>
         </div>
       </div>
-    </header>
+      </header>
+    </>
   );
 }

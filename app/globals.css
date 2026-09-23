@@ -66,16 +66,33 @@ body {
 }
 
 /* ---------- Ambient green glow (page-wide, fixed) ---------- */
+/* One source of truth: anything that has to repaint the page background (an
+   opaque overlay, say) reuses this so the glow never cuts off at its edge. */
+:root {
+  --ambient-glow:
+    radial-gradient(620px circle at 12% 15%, rgba(186, 255, 98, 0.06), transparent 60%),
+    radial-gradient(720px circle at 88% 55%, rgba(186, 255, 98, 0.045), transparent 65%),
+    radial-gradient(560px circle at 45% 95%, rgba(186, 255, 98, 0.05), transparent 60%),
+    radial-gradient(480px circle at 70% 10%, rgba(212, 175, 90, 0.03), transparent 60%);
+}
+
 .ambient-glow {
   position: fixed;
   inset: 0;
   z-index: -21;
   pointer-events: none;
-  background:
-    radial-gradient(620px circle at 12% 15%, rgba(186, 255, 98, 0.06), transparent 60%),
-    radial-gradient(720px circle at 88% 55%, rgba(186, 255, 98, 0.045), transparent 65%),
-    radial-gradient(560px circle at 45% 95%, rgba(186, 255, 98, 0.05), transparent 60%),
-    radial-gradient(480px circle at 70% 10%, rgba(212, 175, 90, 0.03), transparent 60%);
+  background: var(--ambient-glow);
+}
+
+/* Sized to the full viewport, then clipped by its parent, so the gradients land
+   on exactly the same pixels as .ambient-glow underneath. */
+.ambient-glow-fill {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 100vh;
+  pointer-events: none;
+  background: var(--ambient-glow);
 }
 
 /* ---------- Aurora backdrop ---------- */

@@ -4,6 +4,7 @@ import { NotebookPen } from "lucide-react";
 
 import { useAuth } from "@/components/journal/AuthProvider";
 import { StatCard } from "@/components/journal/StatCard";
+import { useTradeDialog } from "@/components/journal/TradeDialog";
 import { Button } from "@/components/ui/Button";
 
 // Wired up in Etap 9 — the shell ships with the shape, not the numbers.
@@ -16,6 +17,7 @@ const STATS = [
 
 export default function JournalDashboard() {
   const { user } = useAuth();
+  const { openCreate } = useTradeDialog();
 
   return (
     <div className="flex flex-col gap-8">
@@ -49,7 +51,7 @@ export default function JournalDashboard() {
             </p>
           </div>
 
-          <Button size="md" onClick={() => {}}>
+          <Button size="md" onClick={() => openCreate()}>
             Dodaj pierwszą pozycję
           </Button>
         </div>
