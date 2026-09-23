@@ -15,14 +15,14 @@ type FormFieldProps = {
  * Label + control + error + hint. When htmlFor is omitted a stable id is generated,
  * so the caller can wire it to the control via the `id` it renders.
  */
-export function FormField({
+export const FormField = ({
   label,
   htmlFor,
   error,
   hint,
   required,
   children,
-}: FormFieldProps) {
+}: FormFieldProps) => {
   const generatedId = useId();
   const id = htmlFor ?? generatedId;
 
@@ -48,4 +48,4 @@ export function FormField({
       {!error && hint && <p className="text-xs text-muted-2">{hint}</p>}
     </div>
   );
-}
+};

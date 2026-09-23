@@ -1,9 +1,14 @@
 "use client";
 
-import { createContext, useCallback, useContext, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { Pencil } from "lucide-react";
 
-import { TradeForm } from "@/components/journal/TradeForm";
+import { TradeForm } from "@/components/reusable/TradeForm";
+import {
+  TradeDialogContext,
+  type TradeDialogApi,
+  type TradeDialogMode,
+} from "@/components/reusable/TradeDialogContext";
 import {
   Dialog,
   DialogContent,
@@ -11,56 +16,35 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import type { Trade } from "@/utils/trades";
+import type { Trade } from "@/utils/trades/types";
 
-type Mode = "create" | "edit" | "view";
-
-type DialogState = {
-  open: boolean;
-  mode: Mode;
-  trade?: Trade;
-  defaultDate?: string;
-};
-
-type TradeDialogApi = {
-  openCreate: (date?: string) => void;
-  openView: (trade: Trade) => void;
-  openEdit: (trade: Trade) => void;
-  close: () => void;
-  /** Bumps after every successful save or delete — lists watch it to refetch. */
-  savedAt: number;
-  notifySaved: () => void;
-};
-
-const TradeDialogContext = createContext<TradeDialogApi | null>(null);
-
-const TITLES: Record<Mode, string> = {
+const TITLES: Record<TradeDialogMode, string> = {
   create: "Nowa pozycja",
   edit: "Edycja pozycji",
   view: "Pozycja",
 };
 
-export function TradeDialogProvider({
-  children,
-}: {
+type DialogState = {
+  open: boolean;
+  mode: TradeDialogMode;
+  trade?: Trade;
+  defaultDate?: string;
+};
+
+type TradeDialogProviderProps = {
   children: React.ReactNode;
-}) {
-  const [state, setState] = useState<DialogState>({
-    open: false,
-    mode: "create",
-  });
+};
+
+export const TradeDialogProvider = ({ children }: TradeDialogProviderProps) => {
+  const [state, setState] = useState<DialogState>({ open: false, mode: "create" });
   const [savedAt, setSavedAt] = useState(0);
 
   const notifySaved = useCallback(() => setSavedAt(Date.now()), []);
-  const close = useCallback(
-    () => setState((s) => ({ ...s, open: false })),
-    []
-  );
+  const close = useCallback(() => setState((s) => ({ ...s, open: false })), []);
 
   const api = useMemo<TradeDialogApi>(
     () => ({
-      openCreate: (date) =>
-        setState({ open: true, mode: "create", defaultDate: date }),
+      openCreate: (date) => setState({ open: true, mode: "create", defaultDate: date }),
       openView: (trade) => setState({ open: true, mode: "view", trade }),
       openEdit: (trade) => setState({ open: true, mode: "edit", trade }),
       close,
@@ -76,10 +60,7 @@ export function TradeDialogProvider({
     <TradeDialogContext.Provider value={api}>
       {children}
 
-      <Dialog
-        open={state.open}
-        onOpenChange={(open) => !open && close()}
-      >
+      <Dialog open={state.open} onOpenChange={(open) => !open && close()}>
         <DialogContent className="max-h-[85vh] max-w-2xl gap-0 overflow-y-auto p-0">
           <DialogHeader className="sticky top-0 z-10 border-b border-border bg-bg px-6 py-4">
             <div className="flex items-center gap-2">
@@ -120,11 +101,4 @@ export function TradeDialogProvider({
       </Dialog>
     </TradeDialogContext.Provider>
   );
-}
-
-export function useTradeDialog() {
-  const ctx = useContext(TradeDialogContext);
-  if (!ctx)
-    throw new Error("useTradeDialog must be used inside <TradeDialogProvider>");
-  return ctx;
-}
+};

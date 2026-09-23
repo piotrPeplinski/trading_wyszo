@@ -2,10 +2,11 @@
 
 import { NotebookPen } from "lucide-react";
 
-import { useAuth } from "@/components/journal/AuthProvider";
-import { StatCard } from "@/components/journal/StatCard";
-import { useTradeDialog } from "@/components/journal/TradeDialog";
+import { EmptyState } from "@/components/reusable/EmptyState";
+import { StatCard } from "@/components/reusable/StatCard";
 import { Button } from "@/components/ui/Button";
+import { useAuth } from "@/hooks/useAuth";
+import { useTradeDialog } from "@/hooks/useTradeDialog";
 
 // Wired up in Etap 9 — the shell ships with the shape, not the numbers.
 const STATS = [
@@ -13,9 +14,9 @@ const STATS = [
   { label: "Pozycje", value: "—" },
   { label: "Średnie RR", value: "—" },
   { label: "Total PnL", value: "—" },
-] as const;
+];
 
-export default function JournalDashboard() {
+const JournalDashboard = () => {
   const { user } = useAuth();
   const { openCreate } = useTradeDialog();
 
@@ -35,27 +36,15 @@ export default function JournalDashboard() {
         <h2 className="font-display text-lg font-semibold text-ink">
           Ostatnie pozycje
         </h2>
-
-        <div className="flex flex-col items-center gap-4 px-4 py-12 text-center">
-          <span className="flex h-14 w-14 items-center justify-center rounded-full bg-surface-2 text-muted">
-            <NotebookPen size={24} />
-          </span>
-
-          <div className="flex flex-col gap-1">
-            <p className="font-medium text-ink">
-              Nie masz jeszcze żadnych pozycji.
-            </p>
-            <p className="max-w-sm text-sm text-muted">
-              Zapisz pierwszy trade, a pojawią się tu statystyki, kalendarz i
-              equity curve.
-            </p>
-          </div>
-
-          <Button size="md" onClick={() => openCreate()}>
-            Dodaj pierwszą pozycję
-          </Button>
-        </div>
+        <EmptyState
+          icon={<NotebookPen size={24} />}
+          title="Nie masz jeszcze żadnych pozycji."
+          description="Zapisz pierwszy trade, a pojawią się tu statystyki, kalendarz i equity curve."
+          action={<Button onClick={() => openCreate()}>Dodaj pierwszą pozycję</Button>}
+        />
       </section>
     </div>
   );
-}
+};
+
+export default JournalDashboard;

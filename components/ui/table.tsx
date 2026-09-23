@@ -1,9 +1,9 @@
 "use client"
 
-import * as React from "react"
+import React from "react"
 import { cn } from "@/lib/utils"
 
-function Table({ className, ...props }: React.ComponentProps<"table">) {
+const Table = ({ className, ...props }: React.ComponentProps<"table">) => {
   return (
     <div
       data-slot="table-container"
@@ -11,34 +11,39 @@ function Table({ className, ...props }: React.ComponentProps<"table">) {
     >
       <table
         data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
+        className={cn(
+          // separate, not collapse: browsers drop border-radius on cells in the
+          // collapsed model, and the sticky header needs rounded top corners.
+          "w-full caption-bottom border-separate border-spacing-0 text-sm",
+          className
+        )}
         {...props}
       />
     </div>
   )
 }
 
-function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
+const TableHeader = ({ className, ...props }: React.ComponentProps<"thead">) => {
   return (
     <thead
       data-slot="table-header"
-      className={cn("[&_tr]:border-b", className)}
+      className={cn("[&_th]:border-b", className)}
       {...props}
     />
   )
 }
 
-function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
+const TableBody = ({ className, ...props }: React.ComponentProps<"tbody">) => {
   return (
     <tbody
       data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0", className)}
+      className={cn("[&_tr:last-child>td]:border-b-0", className)}
       {...props}
     />
   )
 }
 
-function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
+const TableFooter = ({ className, ...props }: React.ComponentProps<"tfoot">) => {
   return (
     <tfoot
       data-slot="table-footer"
@@ -51,12 +56,12 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   )
 }
 
-function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
+const TableRow = ({ className, ...props }: React.ComponentProps<"tr">) => {
   return (
     <tr
       data-slot="table-row"
       className={cn(
- "border-b transition-colors hover:bg-surface-2/50 has-aria-expanded:bg-surface-2/50 data-[state=selected]:bg-surface-2",
+ "transition-colors hover:bg-surface-2/50 has-aria-expanded:bg-surface-2/50 data-[state=selected]:bg-surface-2 [&>td]:border-b",
         className
       )}
       {...props}
@@ -64,7 +69,7 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   )
 }
 
-function TableHead({ className, ...props }: React.ComponentProps<"th">) {
+const TableHead = ({ className, ...props }: React.ComponentProps<"th">) => {
   return (
     <th
       data-slot="table-head"
@@ -77,7 +82,7 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   )
 }
 
-function TableCell({ className, ...props }: React.ComponentProps<"td">) {
+const TableCell = ({ className, ...props }: React.ComponentProps<"td">) => {
   return (
     <td
       data-slot="table-cell"
@@ -90,10 +95,10 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   )
 }
 
-function TableCaption({
+const TableCaption = ({
   className,
   ...props
-}: React.ComponentProps<"caption">) {
+}: React.ComponentProps<"caption">) => {
   return (
     <caption
       data-slot="table-caption"

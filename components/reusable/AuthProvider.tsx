@@ -1,19 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
+import { AuthContext } from "@/components/reusable/AuthContext";
 import { api, type User } from "@/utils/api";
 
-type AuthState = {
-  user: User | null;
-  loading: boolean;
-  logout: () => Promise<void>;
+type AuthProviderProps = {
+  children: React.ReactNode;
 };
 
-const AuthContext = createContext<AuthState | null>(null);
-
-export function AuthProvider({ children }: { children: React.ReactNode }) {
+export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
@@ -29,21 +26,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       .finally(() => setLoading(false));
   }, []);
 
-  async function logout() {
+  const logout = async () => {
     await api.post("/auth/logout");
     setUser(null);
     router.replace("/login");
-  }
+  };
 
   return (
     <AuthContext.Provider value={{ user, loading, logout }}>
       {children}
     </AuthContext.Provider>
   );
-}
-
-export function useAuth() {
-  const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error("useAuth must be used inside <AuthProvider>");
-  return ctx;
-}
+};

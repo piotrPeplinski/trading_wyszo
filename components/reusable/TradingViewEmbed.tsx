@@ -3,17 +3,14 @@
 import { useState } from "react";
 import { ExternalLink } from "lucide-react";
 
+import { shortHost } from "@/utils/journal";
 import { snapshotUrl } from "@/utils/tradingview";
 
-function shortHost(link: string) {
-  try {
-    return new URL(link).host.replace(/^www\./, "");
-  } catch {
-    return link;
-  }
-}
+type TradingViewEmbedProps = {
+  link: string;
+};
 
-export function TradingViewEmbed({ link }: { link: string }) {
+export const TradingViewEmbed = ({ link }: TradingViewEmbedProps) => {
   // Snapshots get deleted upstream, so a valid-looking URL can still 404 —
   // onError drops us to the same chip a non-TradingView link gets.
   const [broken, setBroken] = useState(false);
@@ -43,4 +40,4 @@ export function TradingViewEmbed({ link }: { link: string }) {
       {shortHost(link)}
     </a>
   );
-}
+};

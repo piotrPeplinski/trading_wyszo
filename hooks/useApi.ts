@@ -15,7 +15,7 @@ import { api } from "@/utils/api";
  *
  * An expired or missing session (401) bounces the user to /login.
  */
-export function useApi() {
+export const useApi = () => {
   const router = useRouter();
 
   useEffect(() => {
@@ -31,4 +31,4 @@ export function useApi() {
   }, [router]);
 
   return api;
-}
+};

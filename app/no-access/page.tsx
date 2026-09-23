@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Lock } from "lucide-react";
 
-import { AuthHeader } from "@/components/journal/AuthHeader";
+import { AuthHeader } from "@/components/reusable/AuthHeader";
 import { Badge } from "@/components/ui/Badge";
 import { buttonClasses } from "@/components/ui/Button";
 import { SectionAurora } from "@/components/ui/SectionAurora";
@@ -20,7 +20,7 @@ const STEPS = [
   "Zaloguj się ponownie tym samym kontem Discord — dziennik odblokuje się automatycznie.",
 ];
 
-export default function NoAccessPage() {
+const NoAccessPage = () => {
   return (
     // Aurora wraps header + main, not just <main>: clipping it at main's top edge
     // draws a visible seam across the page.
@@ -68,4 +68,6 @@ export default function NoAccessPage() {
       </main>
     </div>
   );
-}
+};
+
+export default NoAccessPage;
