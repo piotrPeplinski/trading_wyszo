@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Vendored verbatim from the @bklit shadcn registry. Not ours to lint:
+    // any fix here is overwritten by the next `shadcn add @bklit/*`.
+    "components/charts/**",
   ]),
 ]);
 

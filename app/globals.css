@@ -321,3 +321,39 @@ body {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* Bklit UI chart chrome -> JWFOREX tokens. Only the frame: line colours are
+   passed per-component via `stroke`, so --chart-line-* and the --chart-1..5
+   palette stay undefined on purpose.
+   No light-mode twin needed: every value points at a --color-* token that
+   [data-theme="light"] already overrides, and var() resolves at use site. */
+:root {
+  --chart-background: var(--color-surface);
+  --chart-foreground: var(--color-muted);
+  --chart-foreground-muted: var(--color-muted-2);
+  --chart-label: var(--color-muted);
+  --chart-grid: var(--color-border);
+  --chart-brush-border: var(--color-border);
+  --chart-crosshair: var(--color-muted-2);
+  --chart-segment-line: var(--color-border);
+  --chart-segment-background: var(--color-surface-2);
+  --chart-tooltip-background: var(--color-surface-2);
+  --chart-tooltip-foreground: var(--color-ink);
+  --chart-tooltip-muted: var(--color-muted);
+  --chart-indicator-color: var(--color-green);
+  --chart-indicator-secondary-color: var(--color-muted-2);
+  --chart-marker-background: var(--color-surface-2);
+  --chart-marker-border: var(--color-border);
+  --chart-marker-foreground: var(--color-ink);
+  --chart-marker-badge-background: var(--color-surface);
+  --chart-marker-badge-foreground: var(--color-ink);
+}
+
+/* The four tokens Bklit reaches through Tailwind utilities rather than var().
+   `inline` keeps the var() unresolved in the utility, so light mode still swaps. */
+@theme inline {
+  --color-chart-label: var(--chart-label);
+  --color-chart-tooltip-background: var(--chart-tooltip-background);
+  --color-chart-tooltip-foreground: var(--chart-tooltip-foreground);
+  --color-chart-tooltip-muted: var(--chart-tooltip-muted);
+}
