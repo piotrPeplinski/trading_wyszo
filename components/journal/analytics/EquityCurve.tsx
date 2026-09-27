@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { curveLinear } from "@visx/curve";
 
 import { Area } from "@/components/charts/area";
 import { ChartTooltip } from "@/components/charts/tooltip";
@@ -147,8 +148,15 @@ export const EquityCurve = ({ curve, from, to, zoomable }: EquityCurveProps) => 
               <YDomainAnchor dataKey="cumulative" />
               {/* Fill only — the sign-coloured stroke goes on top. No permanent
                   markers: on a dense range they collapse into a ring of blobs.
-                  The tooltip's own dot marks the point under the cursor. */}
+                  The tooltip's own dot marks the point under the cursor.
+
+                  curveLinear is not optional here: Area defaults to
+                  curveMonotoneX while ProfitLossLine defaults to curveLinear,
+                  so the fill's top edge and the stroke follow different paths
+                  between points — the fill spills over the line in places and
+                  leaves a gap under it in others. Both must interpolate alike. */}
               <Area
+                curve={curveLinear}
                 dataKey="cumulative"
                 fill={POSITIVE}
                 fillOpacity={0.22}

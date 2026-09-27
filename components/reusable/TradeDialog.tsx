@@ -3,6 +3,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { Pencil } from "lucide-react";
 
+import { PlanRulesBar } from "@/components/reusable/PlanRulesBar";
 import { TradeForm } from "@/components/reusable/TradeForm";
 import {
   TradeDialogContext,
@@ -84,6 +85,9 @@ export const TradeDialogProvider = ({ children }: TradeDialogProviderProps) => {
           </DialogHeader>
 
           <div className="px-6 py-5">
+            {/* Rules first: they are what the form is supposed to be checked against. */}
+            {!readOnly && <PlanRulesBar />}
+
             {/* key remounts the form so switching trade/mode resets its state */}
             <TradeForm
               key={`${state.mode}-${state.trade?.id ?? "new"}-${state.defaultDate ?? ""}`}
