@@ -31,6 +31,20 @@ export const startOfMonthGrid = (d: Date) =>
 export const endOfMonthGrid = (d: Date) =>
   endOfWeek(new Date(d.getFullYear(), d.getMonth() + 1, 0));
 
+/**
+ * Calendar bounds, as opposed to the *Grid helpers above: those pad out to whole
+ * weeks for the month view, these are the real first and last day of the period.
+ */
+export const startOfMonth = (d: Date) => new Date(d.getFullYear(), d.getMonth(), 1);
+
+/** Day 0 of the next month is the last day of this one — no leap-year special case. */
+export const endOfMonth = (d: Date) =>
+  new Date(d.getFullYear(), d.getMonth() + 1, 0);
+
+export const startOfYear = (d: Date) => new Date(d.getFullYear(), 0, 1);
+
+export const endOfYear = (d: Date) => new Date(d.getFullYear(), 11, 31);
+
 /** Clamps the day: addMonths(31 Jan, 1) is 28/29 Feb, never 2/3 March. */
 export const addMonths = (d: Date, n: number) => {
   const target = new Date(d.getFullYear(), d.getMonth() + n, 1);
