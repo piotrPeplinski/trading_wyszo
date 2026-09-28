@@ -23,7 +23,7 @@ export const RangePicker = ({
     <div
       role="group"
       aria-label="Zakres dat"
-      className="flex w-full gap-1 rounded-full border border-border bg-surface p-1 sm:w-auto"
+      className="flex w-full gap-1 overflow-x-auto rounded-full border border-border bg-surface p-1 sm:w-auto sm:overflow-visible"
     >
       {RANGE_OPTIONS.map((option) => {
         const active = option.key === range.key;
@@ -36,7 +36,7 @@ export const RangePicker = ({
             className={cn(
               // Five segments do not fit 375px at the desktop padding, and the
               // group must never be what makes the page scroll sideways.
-              "flex-1 whitespace-nowrap rounded-full px-2.5 py-1.5 text-xs font-medium transition-colors sm:flex-none sm:px-4 sm:text-sm",
+              "flex-1 whitespace-nowrap rounded-full px-1.5 py-1.5 text-xs font-medium transition-colors sm:flex-none sm:px-4 sm:text-sm",
               active
                 ? "bg-surface-2 text-ink"
                 : "text-muted hover:text-ink"
@@ -49,7 +49,7 @@ export const RangePicker = ({
     </div>
 
     {range.key === "custom" && (
-      <div className="flex gap-3">
+      <div className="flex flex-wrap gap-3">
         <div className="flex flex-col gap-1.5">
           <label htmlFor="range-from" className="text-xs text-muted">
             Od

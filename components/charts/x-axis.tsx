@@ -4,10 +4,14 @@ import { memo, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 import { useChart, useChartStable } from "./context/chart-context";
-// LOCAL DEVIATION from the @bklit registry: added the `tickFormat` prop.
-// Upstream hardcodes shortDateFmt at every label site and exposes no way to
-// change it, but this app needs weekday / day / month / year labels depending
-// on the visible span. Re-apply after any `shadcn add @bklit/*`.
+// LOCAL DEVIATION from the @bklit registry, two patches. Re-apply both after
+// any `shadcn add @bklit/*`.
+// 1. Added the `tickFormat` prop. Upstream hardcodes shortDateFmt at every
+//    label site and exposes no way to change it, but this app needs weekday /
+//    day / month / year labels depending on the visible span.
+// 2. `numTicks` is capped by the chart's own innerWidth (MIN_TICK_PX below).
+//    Upstream draws exactly numTicks labels regardless of width, so nine month
+//    names collapse into each other on a phone.
 import { shortDateFmt } from "./utils/chart-formatters";
 
 /** The prop when given, the registry default otherwise. */
@@ -581,6 +585,10 @@ function appendProjectionTailTicks(
   return [...ticks, ...extras].sort((a, b) => a.x - b.x);
 }
 
+// Narrowest a label may sit from the next one before they touch. "28 wrz" at
+// 12px is ~40px wide; 48 leaves a little air.
+const MIN_TICK_PX = 48;
+
 export function XAxis(props: XAxisProps) {
   const { containerRef } = useChartStable();
   const [mounted, setMounted] = useState(false);
@@ -604,17 +612,31 @@ const XAxisInner = memo(function XAxisInner({
   tickFormat,
   container,
 }: XAxisProps & { container: HTMLDivElement }) {
-  const { xScale, margin, tooltipData, data, xAccessor, dateLabels, xDomain } =
-    useChart();
+  const {
+    xScale,
+    margin,
+    tooltipData,
+    data,
+    xAccessor,
+    dateLabels,
+    xDomain,
+    innerWidth,
+  } = useChart();
 
   const labelsToShow = useMemo(() => {
+    // Never ask for more labels than the axis has room for.
+    const ticks = Math.min(
+      numTicks,
+      Math.max(2, Math.floor(innerWidth / MIN_TICK_PX))
+    );
+
     const projectionExtendsScale =
       tickMode === "data" && domainExtendsPastData(data, xAccessor, xScale);
 
     if (tickMode === "domain") {
       return buildDomainTicks({
         marginLeft: margin.left,
-        numTicks,
+        numTicks: ticks,
         tickFormat,
         xScale,
       });
@@ -624,7 +646,7 @@ const XAxisInner = memo(function XAxisInner({
     if (projectionExtendsScale && xDomain == null) {
       return buildDomainTicks({
         marginLeft: margin.left,
-        numTicks,
+        numTicks: ticks,
         tickFormat,
         xScale,
       });
@@ -634,7 +656,7 @@ const XAxisInner = memo(function XAxisInner({
       data,
       dateLabels,
       marginLeft: margin.left,
-      targetTickCount: numTicks,
+      targetTickCount: ticks,
       tickFormat,
       xAccessor,
       xScale,
@@ -649,7 +671,7 @@ const XAxisInner = memo(function XAxisInner({
         xScale,
         margin.left,
         tickFormat,
-        Math.max(1, numTicks - dataTicks.length + 1)
+        Math.max(1, ticks - dataTicks.length + 1)
       );
     }
 
@@ -663,6 +685,7 @@ const XAxisInner = memo(function XAxisInner({
     xScale,
     margin.left,
     numTicks,
+    innerWidth,
     tickFormat,
   ]);
 
