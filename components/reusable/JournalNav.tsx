@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Plus } from "lucide-react";
+import { Menu, Plus, X } from "lucide-react";
+import { useState } from "react";
 
 import { site } from "@/content/site-content";
+import { JournalMobileMenu } from "@/components/reusable/JournalMobileMenu";
 import { UserMenu } from "@/components/reusable/UserMenu";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
@@ -22,6 +24,7 @@ import { cn } from "@/lib/utils";
 export const JournalNav = () => {
   const pathname = usePathname();
   const { openCreate } = useTradeDialog();
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
@@ -45,7 +48,7 @@ export const JournalNav = () => {
             />
           </Link>
 
-          <nav className="no-scrollbar flex min-w-0 flex-1 items-center gap-5 overflow-x-auto md:justify-center md:overflow-visible">
+          <nav className="hidden min-w-0 flex-1 items-center gap-5 md:flex md:justify-center">
             {JOURNAL_LINKS.map((link) => {
               const active = isLinkActive(pathname, link.href, link.exact);
               return (
@@ -77,9 +80,28 @@ export const JournalNav = () => {
             </Button>
 
             <ThemeToggle className="border-[#232a3b] text-[#92a0b8] hover:text-[#f4f6fb]" />
-            <UserMenu />
+
+            <div className="hidden md:block">
+              <UserMenu />
+            </div>
+
+            <button
+              type="button"
+              aria-label="Menu"
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen((v) => !v)}
+              className="rounded-lg p-2 text-[#f4f6fb] md:hidden"
+            >
+              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
           </div>
         </div>
+
+        <JournalMobileMenu
+          open={mobileOpen}
+          pathname={pathname}
+          onClose={() => setMobileOpen(false)}
+        />
       </header>
     </>
   );

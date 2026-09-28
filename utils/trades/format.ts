@@ -27,3 +27,16 @@ export const formatRr = (n: number) => ratio.format(n);
 
 export const percentTone = (n: number) =>
   n > 0 ? "text-green-ink" : n < 0 ? "text-red" : "text-muted";
+
+const whole = new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 0 });
+
+/**
+ * No decimals — for the calendar's phone cell, which is ~48px wide. "-40,0%"
+ * overflows there; "-40%" fits with room to spare.
+ */
+export const formatPercentShort = (n: number) =>
+  `${sign(n)}${whole.format(n)}%`;
+
+/** Same rule as percentTone, as a fill — for the calendar's mobile day dot. */
+export const percentDot = (n: number) =>
+  n > 0 ? "bg-green" : n < 0 ? "bg-red" : "bg-muted-2";

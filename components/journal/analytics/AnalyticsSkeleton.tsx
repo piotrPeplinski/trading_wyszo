@@ -11,8 +11,8 @@ export const AnalyticsSkeleton = () => (
       ))}
     </div>
 
-    {/* Chart first, breakdown under it — same order as the real layout. */}
+    {/* Cards and chart only — whatever a page stacks underneath brings its own
+        placeholder (RecentTrades has one; the breakdown needs none). */}
     <Skeleton className="h-[476px] rounded-2xl" />
-    <Skeleton className="h-[216px] rounded-2xl" />
   </>
 );

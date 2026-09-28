@@ -154,7 +154,9 @@ export const TradeForm = ({
         />
       </FormField>
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      {/* Two short selects sit side by side even on a phone — stacking them
+          pushed the numeric fields below the fold. */}
+      <div className="grid grid-cols-2 gap-3 sm:gap-5">
         <TradeSelectField
           id="field-operation"
           label="Operacja"

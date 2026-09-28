@@ -18,13 +18,16 @@ export const TradeResultFields = ({
   disabled,
   onChange,
 }: TradeResultFieldsProps) => (
-  <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+  // % and $ pair up on a phone; RR takes the next row on its own rather than
+  // sitting in half a row with nothing beside it.
+  <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-5">
     {NUMERIC_TRADE_FIELDS.map(([field, label]) => (
       <FormField
         key={field}
         label={label}
         htmlFor={`field-${field}`}
         error={errors[field]}
+        className={field === "result_rr" ? "col-span-2 sm:col-span-1" : undefined}
         required
       >
         <Input

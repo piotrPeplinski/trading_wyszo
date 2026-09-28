@@ -2,12 +2,16 @@
 
 import { useId } from "react";
 
+import { cn } from "@/lib/utils";
+
 type FormFieldProps = {
   label: string;
   htmlFor?: string;
   error?: string;
   hint?: string;
   required?: boolean;
+  /** For grid callers that need the field to span differently per breakpoint. */
+  className?: string;
   children: React.ReactNode;
 };
 
@@ -21,13 +25,14 @@ export const FormField = ({
   error,
   hint,
   required,
+  className,
   children,
 }: FormFieldProps) => {
   const generatedId = useId();
   const id = htmlFor ?? generatedId;
 
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className={cn("flex flex-col gap-1.5", className)}>
       <label htmlFor={id} className="text-sm font-medium text-ink">
         {label}
         {required && (

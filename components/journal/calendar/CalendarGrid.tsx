@@ -71,7 +71,7 @@ export const CalendarGrid = ({
       >
         <div className="grid grid-cols-7 gap-1.5 pb-1.5">
           {WEEKDAY_LABELS.map((label) => (
-            <span key={label} className="text-xs text-muted">
+            <span key={label} className="text-center text-xs text-muted">
               {label}
             </span>
           ))}

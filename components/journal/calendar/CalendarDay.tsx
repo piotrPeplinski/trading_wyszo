@@ -2,11 +2,17 @@
 
 import { Plus } from "lucide-react";
 
+import { CalendarDayDot } from "@/components/journal/calendar/CalendarDayDot";
+import { CalendarDayNumber } from "@/components/journal/calendar/CalendarDayNumber";
 import { ResultBadge } from "@/components/reusable/ResultBadge";
 import { formatFullDate, toIso } from "@/utils/calendar";
 import type { CalendarMode } from "@/utils/calendarView";
 import { VISIBLE_TRADES } from "@/utils/calendarView";
-import { formatPercent, percentTone } from "@/utils/trades/format";
+import {
+  formatPercent,
+  formatPercentShort,
+  percentTone,
+} from "@/utils/trades/format";
 import type { Trade } from "@/utils/trades/types";
 import { cn } from "@/lib/utils";
 
@@ -52,7 +58,7 @@ export const CalendarDay = ({
       }}
       className={cn(
         "group relative flex flex-col gap-1 overflow-hidden rounded-xl border border-border bg-surface p-1.5 text-left transition-colors",
-        mode === "month" ? "min-h-20 sm:aspect-square" : "min-h-40",
+        mode === "month" ? "min-h-16 sm:min-h-20 sm:aspect-square" : "min-h-16 sm:min-h-40",
         isCurrentPeriod
           ? "hover:border-green/40"
           : "pointer-events-none opacity-40"
@@ -70,15 +76,29 @@ export const CalendarDay = ({
         />
       )}
 
-      <span className="relative flex items-start justify-between gap-1">
-        <span
-          className={cn(
-            "flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-xs",
-            isToday ? "bg-green font-semibold text-[#06110b]" : "text-muted"
-          )}
-        >
-          {date.getDate()}
-        </span>
+      {/* Phone: number, day total and one dot, stacked. Side by side they do not
+          fit — a 7-column grid on a 375px screen leaves ~36px of usable width,
+          and the tile list needs far more than that. */}
+      <span className="relative flex flex-col items-center gap-0.5 sm:hidden">
+        <CalendarDayNumber day={date.getDate()} isToday={isToday} />
+
+        {trades.length > 0 && (
+          <>
+            <span
+              className={cn(
+                "text-[10px] font-semibold leading-none",
+                percentTone(sum)
+              )}
+            >
+              {formatPercentShort(sum)}
+            </span>
+            <CalendarDayDot sum={sum} />
+          </>
+        )}
+      </span>
+
+      <span className="relative hidden items-start justify-between gap-1 sm:flex">
+        <CalendarDayNumber day={date.getDate()} isToday={isToday} />
 
         {trades.length > 0 && (
           <span className={cn("text-xs font-semibold", percentTone(sum))}>
@@ -87,7 +107,7 @@ export const CalendarDay = ({
         )}
       </span>
 
-      <span className="relative flex min-w-0 flex-col gap-0.5">
+      <span className="relative hidden min-w-0 flex-col gap-0.5 sm:flex">
         {trades.slice(0, limit).map((trade) => (
           <span key={trade.id} className="flex items-center gap-1">
             <span className="min-w-0 flex-1 truncate text-[11px] text-ink">
@@ -111,7 +131,7 @@ export const CalendarDay = ({
           e.stopPropagation();
           onAdd(iso);
         }}
-        className="absolute right-1 bottom-1 flex h-6 w-6 items-center justify-center rounded-full bg-surface-2 text-muted opacity-0 transition-opacity hover:text-green-ink focus-visible:opacity-100 group-hover:opacity-100 [@media(hover:none)]:opacity-100"
+        className="absolute right-1 bottom-1 hidden h-6 w-6 items-center justify-center rounded-full bg-surface-2 text-muted opacity-0 transition-opacity hover:text-green-ink focus-visible:opacity-100 group-hover:opacity-100 sm:flex [@media(hover:none)]:opacity-100"
       >
         <Plus size={13} />
       </button>
