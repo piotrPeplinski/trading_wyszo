@@ -57,10 +57,12 @@ export const JournalNav = () => {
                   href={link.href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "shrink-0 border-b-2 pb-0.5 text-sm font-medium transition-colors",
-                    active
-                      ? "border-green text-[#f4f6fb]"
-                      : "border-transparent text-[#92a0b8] hover:text-[#f4f6fb]"
+                    // No underline: globals.css sets `* { border-color }` outside
+                    // any cascade layer, which beats Tailwind's layered
+                    // `border-transparent` — so an inactive link drew a grey rule.
+                    // Colour alone marks the active page, as on the landing nav.
+                    "shrink-0 text-sm font-medium transition-colors",
+                    active ? "text-[#f4f6fb]" : "text-[#92a0b8] hover:text-[#f4f6fb]"
                   )}
                 >
                   {link.label}

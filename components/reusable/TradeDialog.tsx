@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from "react";
 import { Pencil } from "lucide-react";
 
 import { PlanRulesBar } from "@/components/reusable/PlanRulesBar";
+import { DialogCloseButton } from "@/components/reusable/DialogCloseButton";
 import { TradeForm } from "@/components/reusable/TradeForm";
 import {
   TradeDialogContext,
@@ -62,7 +63,8 @@ export const TradeDialogProvider = ({ children }: TradeDialogProviderProps) => {
       {children}
 
       <Dialog open={state.open} onOpenChange={(open) => !open && close()}>
-        <DialogContent className="max-h-[85vh] max-w-2xl gap-0 overflow-y-auto p-0">
+        <DialogContent className="max-h-[85vh] max-w-[calc(100%-2rem)] gap-0 overflow-y-auto p-0 sm:max-w-2xl"
+          showCloseButton={false}>
           <DialogHeader className="sticky top-0 z-10 border-b border-border bg-bg px-6 py-4">
             <div className="flex items-center gap-2">
               <DialogTitle className="font-display text-xl font-bold text-ink">
@@ -78,6 +80,8 @@ export const TradeDialogProvider = ({ children }: TradeDialogProviderProps) => {
                   <Pencil size={16} />
                 </button>
               )}
+
+              <DialogCloseButton />
             </div>
             <DialogDescription className="sr-only">
               Formularz pozycji tradingowej

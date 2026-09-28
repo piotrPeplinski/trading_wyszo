@@ -92,7 +92,7 @@ export const CalendarDay = ({
             >
               {formatPercentShort(sum)}
             </span>
-            <CalendarDayDot sum={sum} />
+            <CalendarDayDot count={trades.length} sum={sum} />
           </>
         )}
       </span>

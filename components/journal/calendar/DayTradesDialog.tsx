@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, NotebookPen, Pencil } from "lucide-react";
 
+import { DialogCloseButton } from "@/components/reusable/DialogCloseButton";
 import { EmptyState } from "@/components/reusable/EmptyState";
 import { ResultBadge } from "@/components/reusable/ResultBadge";
 import { TradeForm } from "@/components/reusable/TradeForm";
@@ -52,7 +53,8 @@ export const DayTradesDialog = ({ iso, trades, onClose }: DayTradesDialogProps) 
 
   return (
     <Dialog open={iso !== null} onOpenChange={(open) => !open && close()}>
-      <DialogContent className="max-h-[85vh] max-w-2xl gap-0 overflow-y-auto p-0">
+      <DialogContent className="max-h-[85vh] max-w-[calc(100%-2rem)] gap-0 overflow-y-auto p-0 sm:max-w-2xl"
+        showCloseButton={false}>
         <DialogHeader className="sticky top-0 z-10 border-b border-border bg-bg px-6 py-4">
           <div className="flex items-center gap-2">
             {selected && (
@@ -80,6 +82,8 @@ export const DayTradesDialog = ({ iso, trades, onClose }: DayTradesDialogProps) 
                 <Pencil size={16} />
               </button>
             )}
+
+            <DialogCloseButton />
           </div>
 
           <DialogDescription className={selected ? "sr-only" : "text-sm text-muted"}>

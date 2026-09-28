@@ -37,6 +37,14 @@ const whole = new Intl.NumberFormat("pl-PL", { maximumFractionDigits: 0 });
 export const formatPercentShort = (n: number) =>
   `${sign(n)}${whole.format(n)}%`;
 
-/** Same rule as percentTone, as a fill — for the calendar's mobile day dot. */
+/**
+ * Same rule as percentTone, as a filled badge — for the calendar's phone cell.
+ * Carries the text colour too: the counter sits on the fill, and lime needs
+ * dark text where red and grey need light.
+ */
 export const percentDot = (n: number) =>
-  n > 0 ? "bg-green" : n < 0 ? "bg-red" : "bg-muted-2";
+  n > 0
+    ? "bg-green text-[#06110b]"
+    : n < 0
+      ? "bg-red text-[#f4f6fb]"
+      : "bg-muted-2 text-[#f4f6fb]";
