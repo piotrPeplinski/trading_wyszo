@@ -11,9 +11,11 @@ export const CalendarSummary = ({ trades }: CalendarSummaryProps) => {
   const sum = trades.reduce((acc, t) => acc + t.result_percentage, 0);
   const decided = trades.filter((t) => t.result !== "be").length;
   const wins = trades.filter((t) => t.result === "tp").length;
-  const avgRr = trades.length
-    ? trades.reduce((acc, t) => acc + t.result_rr, 0) / trades.length
-    : 0;
+  // Same rule as the backend stats: only TP trades with positive RR.
+  const rrTrades = trades.filter((t) => t.result === "tp" && t.result_rr > 0);
+  const avgRr = rrTrades.length
+    ? rrTrades.reduce((acc, t) => acc + t.result_rr, 0) / rrTrades.length
+    : null;
 
   const stats = [
     { label: "Pozycje", value: String(trades.length), tone: "text-ink" },
@@ -29,7 +31,7 @@ export const CalendarSummary = ({ trades }: CalendarSummaryProps) => {
     },
     {
       label: "Średnie RR",
-      value: trades.length ? formatRr(avgRr) : "—",
+      value: avgRr === null ? "—" : formatRr(avgRr),
       tone: "text-ink",
     },
   ];

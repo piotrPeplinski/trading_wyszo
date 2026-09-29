@@ -57,9 +57,6 @@ export const validateTrade = (v: TradeFormValues): TradeFormErrors => {
     else if (Number.isNaN(Number(raw))) errors[field] = `${label} musi być liczbą.`;
   }
 
-  if (!errors.result_rr && Number(v.result_rr) < 0)
-    errors.result_rr = "RR nie może być ujemne.";
-
   const link = v.link.trim();
   if (link && !/^https?:\/\//i.test(link))
     errors.link = "Link musi zaczynać się od http:// lub https://.";
