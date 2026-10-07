@@ -54,6 +54,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        <meta name="facebook-domain-verification" content="t7w0zkbso8m1z0r17yh4vllt7mu0qr" />
         <script
           type={typeof window === "undefined" ? "text/javascript" : "text/plain"}
           suppressHydrationWarning
