@@ -22,7 +22,7 @@ export const hero = {
   headline: ["Przestań zgadywać.", "Zacznij handlować", "systemowo."],
   shimmerWord: "systemowo.",
   subheadline:
-    "Naucz się mojej strategii, zadawaj mi pytania bez ograniczeń, otrzymuj każdą moją pozycję długo przed aktywacją i bądź częścią spójnej, aktywnej społeczności.",
+    "Naucz się Zaawansowanych Konceptów SMART MONEY, poznaj moją strategię, zadawaj mi pytania bez ograniczeń i bądź częścią spójnej, aktywnej społeczności.",
   ctaPrimary: "Dołącz do JWFOREX",
   ctaSecondary: "Zobacz jak to działa",
   stats: [
@@ -46,7 +46,6 @@ export const trustPoints = [
   "Transparentny cennik",
   "Community na Discordzie",
   "Analizy codziennie",
-  "Trading dziennie i swing",
   "Kurs 4.0 od podstaw",
 ];
 
@@ -62,7 +61,7 @@ export const comparisonRows = [
   },
   {
     without: "Rozrzucone materiały bez spójnej ścieżki nauki",
-    with: "KURS 4.0 - uczysz się krok po kroku pełnego systemu działania",
+    with: "PROGRAM ‘MISTRZOSTWO SMC’ - 240 stron czystej wiedzy, krok po kroku",
   },
   {
     without: "Ukryte opłaty, płatne wartości premium i ciągłe zmiany cen",
@@ -77,21 +76,21 @@ export const comparisonRows = [
 export const courseModules = [
   {
     icon: "PlayCircle",
-    title: "Lekcje wideo",
+    title: "Pełen program nauki",
     description:
       "Pełna ścieżka nauki od podstaw struktury rynku po zaawansowane koncepty SMC, krok po kroku, w ogromnych detalach.",
   },
   {
-    icon: "NotebookPen",
-    title: "Plany tradingowe",
+    icon: "BookOpen",
+    title: "Dziennik Tradera",
     description:
-      "Gotowe, przetestowane plany dla podejścia dziennego i swingowego — zasady wejścia, wyjścia i zarządzania ryzykiem.",
+      "Zaawansowane, inteligentne narzędzie do wnikliwej analizy swojego tradingu.",
   },
   {
     icon: "BookOpen",
-    title: "E-book",
+    title: "Program ‘Mistrzostwo SMC’",
     description:
-      "Blisko 100 stron czystej wiedzy. Podsumowanie kursu, łatwy powrót do każdego segmentu wiedzy i strategii.",
+      "240 stron czystej wiedzy. Mental tradera, Zaawansowane Koncepty SMC, Gotowe Modele wejścia, typowe blędy i wiele więcej",
   },
 ];
 
@@ -100,7 +99,7 @@ export const memberAreas = [
     icon: "LineChart",
     title: "Moja Sekcja",
     description:
-      "Codzienne analizy rynku, wszystkie pozycje wysyłane przed aktywacją, wideo omówienia każdego take profitu— widzisz dokładnie jak wygląda proces decyzyjny i zachowanie strategii w praktyce.",
+      "Analizy Rynku na żywo, omówienia moich pozycji (zyskownych i stratnych), masa case studies i lekcji, których stale przybywa.",
   },
   {
     icon: "Users",
@@ -110,9 +109,9 @@ export const memberAreas = [
   },
   {
     icon: "Repeat",
-    title: "Dwa warianty stylu",
+    title: "Te same koncepty - różne zastosowanie",
     description:
-      "Aktywny day trading albo pasywny swing trading — dwa podejścia dla różnych stylów życia.",
+      "Moje metody mogą być zastosowane do szybkiego scalpingu jak i pasywnego swing tradingu. Każda osoba może je wykorzysć tak, jak tego potrzebuje.",
   },
   {
     icon: "Globe2",
@@ -124,7 +123,7 @@ export const memberAreas = [
 
 // Wspólna lista benefitów — każdy plan zaznacza, które ma aktywne (reszta pokazana przekreślona).
 export const planBenefits = [
-  "Kurs 4.0",
+  "Program ‘MISTRZOSTWO SMC’",
   "Mentoring",
   "Codzienne analizy na żywo",
   "Dostęp do aktywnej grupy",
@@ -273,8 +272,7 @@ export const faqs = [
   },
   {
     question: "Czy mogę zapłacić w ratach?",
-    answer:
-      "Tak — możliwa jest płatność w ratach 0%, bez dodatkowych kosztów.",
+    answer: "Tak — możliwa jest płatność w ratach 0%, bez dodatkowych kosztów.",
   },
   {
     question: "Ile czasu zajmie mi codzienny trading?",
