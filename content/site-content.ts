@@ -73,6 +73,16 @@ export const comparisonRows = [
   },
 ];
 
+export const journalVideo = {
+  title: "Zobacz, jak działa Dziennik Tradera.",
+  label: "Film: Dziennik Tradera",
+  poster: "/video/dziennik-poster.jpg",
+  sources: {
+    desktop: "/video/dziennik-1080.mp4",
+    mobile: "/video/dziennik-720.mp4",
+  },
+};
+
 export const courseModules = [
   {
     icon: "PlayCircle",

@@ -43,3 +43,5 @@ next-env.d.ts
 
 AGENTS.md
 .claude
+# source master of public/video/dziennik-*.mp4
+/dziennik-film*.mp4

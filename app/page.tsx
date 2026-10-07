@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { TrustBar } from "@/components/sections/TrustBar";
 import { Features } from "@/components/sections/Features";
 import { Course } from "@/components/sections/Course";
+import { JournalVideo } from "@/components/sections/JournalVideo";
 import { MemberArea } from "@/components/sections/MemberArea";
 import { Proof } from "@/components/sections/Proof";
 import { Testimonials } from "@/components/sections/Testimonials";
@@ -18,6 +19,7 @@ export default function Home() {
         <Hero />
         <Proof />
         <Features />
+        <JournalVideo />
         <Course />
         <TrustBar />
         <MemberArea />
