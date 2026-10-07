@@ -46,6 +46,10 @@ function PricingCard({ plan, index }: { plan: Plan; index: number }) {
       </div>
 
       <ul className="mt-6 flex flex-1 flex-col gap-3">
+        <li className="flex items-start gap-2 text-sm text-ink/85">
+          <Check size={16} className="mt-0.5 shrink-0 text-green-ink" />
+          {plan.journal}
+        </li>
         {planBenefits.map((benefit, bi) => {
           const included = bi < plan.includedCount;
           return (

@@ -10,6 +10,7 @@ import {
 import { courseModules } from "@/content/site-content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SectionAurora } from "@/components/ui/SectionAurora";
+import { cn } from "@/lib/utils";
 
 const icons: Record<string, LucideIcon> = {
   PlayCircle,
@@ -32,13 +33,18 @@ export function Course() {
           {courseModules.map((module, i) => {
             const Icon = icons[module.icon];
             return (
-              <motion.div
+              <motion.a
                 key={module.title}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
-                className="relative overflow-hidden rounded-2xl border border-border bg-surface p-7"
+                href={module.href}
+                className={cn(
+                  "relative overflow-hidden rounded-2xl border border-border bg-surface p-7",
+                  module.href &&
+                    "cursor-pointer transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-1 hover:border-green/60 hover:shadow-[0_0_32px_-8px] hover:shadow-green/40"
+                )}
               >
                 <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full bg-green/10 blur-2xl" />
                 <span className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-gold/10 text-gold-ink">
@@ -50,7 +56,7 @@ export function Course() {
                 <p className="relative mt-2 text-sm leading-relaxed text-muted">
                   {module.description}
                 </p>
-              </motion.div>
+              </motion.a>
             );
           })}
         </div>

@@ -83,6 +83,7 @@ export const courseModules = [
   {
     icon: "BookOpen",
     title: "Dziennik Tradera",
+    href: "/journal",
     description:
       "Zaawansowane, inteligentne narzędzie do wnikliwej analizy swojego tradingu.",
   },
@@ -122,13 +123,13 @@ export const memberAreas = [
 ];
 
 // Wspólna lista benefitów — każdy plan zaznacza, które ma aktywne (reszta pokazana przekreślona).
+// Dziennik Tradera jest w każdym planie — etykieta per plan (pole `journal`).
 export const planBenefits = [
   "Program ‘MISTRZOSTWO SMC’",
   "Mentoring",
   "Codzienne analizy na żywo",
   "Dostęp do aktywnej grupy",
   "E-book ze strategią",
-  "Dziennik tradingowy",
   "Konsultacja 1:1",
 ];
 
@@ -140,6 +141,7 @@ export const pricingPlans = [
     description: "Przetestuj grupę nie tracąc początkowej wpłaty.",
     highlight: false,
     includedCount: 5,
+    journal: "Dziennik Tradera - Dostęp na 30 dni",
     cta: "Dołącz teraz",
     url: "https://jwforex.pl/product/dostep-miesiac-do-grupy-jw-trading/",
   },
@@ -151,7 +153,8 @@ export const pricingPlans = [
       "Najczęściej wybierany wariant - przedłuż na stale w dowolnym momencie.",
     highlight: true,
     badge: "Popularne",
-    includedCount: 6,
+    includedCount: 5,
+    journal: "Dziennik Tradera - Dostęp na 90 dni",
     cta: "Dołącz teraz",
     url: "https://jwforex.pl/product/dostep-3-miesiace-do-grupy-jw-trading/",
   },
@@ -162,7 +165,8 @@ export const pricingPlans = [
     description: "Dostęp bezterminowy, płacisz raz.",
     highlight: false,
     badge: "Najlepsza wartość",
-    includedCount: 7,
+    includedCount: 6,
+    journal: "Dziennik Tradera",
     cta: "Dołącz teraz",
     url: "https://jwforex.pl/product/dostep-lifetime-do-grupy-jw-trading/",
   },
