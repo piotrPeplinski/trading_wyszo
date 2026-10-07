@@ -12,7 +12,7 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin", "latin-ext"],
 });
 
-const siteUrl = "https://jwforex.pl";
+const siteUrl = "https://landing.jwforex.pl";
 const title = "JWFOREX — Premium Mentoring Group";
 const description =
   "Kurs 4.0 i mentoring tradingowy oparty na Smart Money Concepts. Bez sprzedawania sygnałów — uczymy samodzielnej analizy rynku.";
