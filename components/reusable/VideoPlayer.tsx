@@ -82,7 +82,7 @@ export const VideoPlayer = ({ sources, poster, label }: VideoPlayerProps) => {
             exit={{ opacity: 0, scale: 1.15 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className={cn(
-              "absolute left-1/2 top-1/2 z-20 -ml-9 -mt-9 flex size-18 cursor-pointer items-center justify-center rounded-full bg-green text-[#06110b] transition-[background-color] hover:bg-green/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green sm:-ml-11 sm:-mt-11 sm:size-22",
+              "absolute left-1/2 top-1/2 z-30 -ml-9 -mt-9 flex size-18 cursor-pointer items-center justify-center rounded-full bg-green text-[#06110b] transition-[background-color] hover:bg-green/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green sm:-ml-11 sm:-mt-11 sm:size-22",
               !player.started && "glow-pulse"
             )}
           >

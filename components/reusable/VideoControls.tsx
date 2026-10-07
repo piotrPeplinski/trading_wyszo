@@ -26,8 +26,10 @@ export const VideoControls = ({ player, hidden, onSkip }: VideoControlsProps) =>
   return (
     <div
       className={cn(
-        "absolute inset-x-0 bottom-0 z-20 bg-linear-to-t from-black/85 via-black/45 to-transparent px-2 pb-1 pt-14 transition-[opacity,translate] duration-300 ease-out sm:px-4 sm:pb-2",
-        hidden && "pointer-events-none translate-y-2 opacity-0"
+        // The gradient is decoration only — on a phone-sized player it reaches up over
+        // the big play button, so taps must fall through it to whatever sits below.
+        "pointer-events-none absolute inset-x-0 bottom-0 z-20 bg-linear-to-t from-black/85 via-black/45 to-transparent px-2 pb-1 pt-14 transition-[opacity,translate] duration-300 ease-out sm:px-4 sm:pb-2",
+        hidden && "translate-y-2 opacity-0"
       )}
     >
       <VideoSlider
@@ -38,10 +40,10 @@ export const VideoControls = ({ player, hidden, onSkip }: VideoControlsProps) =>
         label="Przewijanie"
         valueText={`${formatTime(player.time)} z ${formatTime(player.duration)}`}
         formatHover={formatTime}
-        className="mx-2"
+        className={cn("mx-2", !hidden && "pointer-events-auto")}
       />
 
-      <div className="flex items-center justify-between gap-2">
+      <div className={cn("flex items-center justify-between gap-2", !hidden && "pointer-events-auto")}>
         <div className="flex min-w-0 items-center">
           <VideoIconButton
             label={player.playing ? "Pauza (k)" : "Odtwórz (k)"}
