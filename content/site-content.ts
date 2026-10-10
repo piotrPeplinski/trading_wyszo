@@ -101,7 +101,7 @@ export const courseModules = [
     icon: "BookOpen",
     title: "Program ‘Mistrzostwo SMC’",
     description:
-      "240 stron czystej wiedzy. Mental tradera, Zaawansowane Koncepty SMC, Gotowe Modele wejścia, typowe blędy i wiele więcej",
+      "240 stron czystej wiedzy. Mental tradera, Zaawansowane Koncepty SMC, Gotowe Modele wejścia, typowe błędy i wiele więcej",
   },
 ];
 
@@ -122,7 +122,7 @@ export const memberAreas = [
     icon: "Repeat",
     title: "Te same koncepty - różne zastosowanie",
     description:
-      "Moje metody mogą być zastosowane do szybkiego scalpingu jak i pasywnego swing tradingu. Każda osoba może je wykorzysć tak, jak tego potrzebuje.",
+      "Moje metody mogą być zastosowane do szybkiego scalpingu jak i pasywnego swing tradingu. Każda osoba może je wykorzystać tak, jak tego potrzebuje.",
   },
   {
     icon: "Globe2",
@@ -176,7 +176,7 @@ export const pricingPlans = [
     highlight: false,
     badge: "Najlepsza wartość",
     includedCount: 6,
-    journal: "Dziennik Tradera",
+    journal: "Dziennik Tradera - Dostęp na stałe",
     cta: "Dołącz teraz",
     url: "https://jwforex.pl/product/dostep-lifetime-do-grupy-jw-trading/",
   },
